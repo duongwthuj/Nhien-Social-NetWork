@@ -1,10 +1,12 @@
 import React from "react";
 import { CiHome } from "react-icons/ci";
-import { CiSearch } from "react-icons/ci";
+import { RiMessengerLine } from "react-icons/ri";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
 import { CiBookmark } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
+import { Link } from "react-router-dom";
+
 function LeftSidebar() {
     return (
         <div className="w-[20%] ">
@@ -31,10 +33,10 @@ function LeftSidebar() {
                 <div className="my-4">
                     <div className="flex items-center my-2 px-4 py-2 hover:cursor-pointer rounded-full hover:bg-gray-200 " >
                         <div>
-                            <CiSearch size= "30px"/>
+                            <RiMessengerLine size= "30px"/>
                             
                         </div>
-                        <h1 className="font-semibold text-lg ml-2" >Explore</h1>
+                        <h1 className="font-semibold text-lg ml-2" >RiMessengerLine</h1>
                     </div>
                 </div>
 
@@ -61,13 +63,13 @@ function LeftSidebar() {
 
                 
                 <div className="my-4">
-                    <div className="flex items-center my-2 px-4 py-2 hover:cursor-pointer rounded-full hover:bg-gray-200 " >
+                    <Link to = "/profile" className="flex items-center my-2 px-4 py-2 hover:cursor-pointer rounded-full hover:bg-gray-200 " >
                         <div>
                             <CiUser size= "30px"/>
                             
                         </div>
                         <h1 className="font-semibold text-lg ml-2" >Profile</h1>
-                    </div>
+                    </Link>
                 </div>
 
                 <div className="my-4">
