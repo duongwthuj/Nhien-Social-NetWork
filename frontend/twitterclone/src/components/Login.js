@@ -19,15 +19,16 @@ const Login = () => {
       </div>
 
       {/* Form đăng nhập bên phải */}
-      <div className="w-1/2 flex flex-col justify-center px-16 bg-gray-100">
-        <h2 className="text-2xl font-bold text-green-700 mb-2">ĐĂNG NHẬP</h2>
+      <div className="w-1/2 flex flex-col justify-center px-16 bg-gray-100 ">
+        <h2 className="text-maxl font-bold text-green-700 mb-2 space-y-6">ĐĂNG NHẬP</h2>
         <p className="text-gray-600 mb-4">
           Vui lòng nhập số điện thoại và mật khẩu của bạn
         </p>
 
-        <form className="space-y-3">
+        <form className="space-y-3 py-8">
           {!isLogin && (
             <>
+              
               <input
                 type="text"
                 className="w-full px-4 py-2 border rounded-lg"
@@ -47,19 +48,21 @@ const Login = () => {
             </>
           )}
 
+          
           <input
             type="text"
             className="w-full px-4 py-2 border rounded-lg"
             placeholder="Tài khoản"
           />
+          
           <input
             type="password"
             className="w-full px-4 py-2 border rounded-lg"
             placeholder="Mật khẩu"
           />
 
-          {/* Nút đăng ký */}
-          <button className="w-full bg-orange-500 text-white py-2 rounded-lg font-semibold">
+          
+          <button className="w-full bg-[#00a991] text-white py-2 rounded-lg font-semibold">
           {isLogin ? "ĐĂNG NHẬP" : "ĐĂNG KÝ NGAY"}
           </button>
           

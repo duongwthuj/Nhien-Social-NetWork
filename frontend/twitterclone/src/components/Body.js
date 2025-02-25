@@ -19,6 +19,10 @@ function Body() {
           path: "profile",
           element: <Profile />,
         },
+        {
+          path: "/search",
+          element: <div>Search</div>,
+        }
       ], 
     },
     {

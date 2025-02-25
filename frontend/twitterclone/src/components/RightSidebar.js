@@ -8,12 +8,12 @@ function RightSidebar() {
       <CiSearch size="20px" />
       <input
               type="text"
-              placeholder="Search"
+              placeholder="Tìm kiếm"
               className="bg-transparent outline-none border-none text-lg ml-2"  
             />
       </div>
       <div className='p-4 bg-gray-100 rounded-2xl my-4'>
-        <h1>Suggested for you</h1>  
+        <h1>Đề xuất</h1>  
         <div className='flex items-center my-4'>
           <div className='flex '>
           <Avatar
@@ -25,7 +25,7 @@ function RightSidebar() {
               <h1 className='font-semibold text-gray-600'>Dương Thụ</h1>
               <p className='text-gray-500 '>@duongwthuj</p>
             </div>
-            <button className='px-3 py-1 text-md bg-[#1D9BF0] rounded-full text-white font-bold px-2'>Follow</button>
+            <button className='px-5 py-2 text-xs bg-[#00a991] hover:bg-opacity-80 rounded-full text-white font-bold '>Theo dõi</button>
 
           </div>
         </div>
@@ -41,7 +41,7 @@ function RightSidebar() {
               <h1 className='font-semibold text-gray-600'>Dương Thụ</h1>
               <p className='text-gray-500 '>@duongwthuj</p>
             </div>
-            <button className='px-3 py-1 text-md bg-[#1D9BF0] rounded-full text-white font-bold px-2'>Follow</button>
+            <button className='px-5 py-2 text-xs bg-[#00a991] hover:bg-opacity-80 rounded-full text-white font-bold '>Theo dõi</button>
 
           </div>
         </div>
