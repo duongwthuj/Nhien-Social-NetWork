@@ -20,7 +20,7 @@ const Login = () => {
 
     if (isLogin) {
       if (username === "admin" && password === "123") {
-        navigate("/"); // Chuyển đến trang chủ nếu đúng tài khoản
+        navigate("/home"); // Chuyển đến trang chủ nếu đúng tài khoản
       } else {
         setError("Sai tài khoản hoặc mật khẩu!"); // Hiển thị lỗi
       }

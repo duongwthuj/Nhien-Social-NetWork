@@ -11,7 +11,7 @@ import SavePage from "./SavePage";
 
 const appRouter = createBrowserRouter([
   {
-    path: "/",
+    path: "/home",
     element: <Home />, 
     children: [
       {
@@ -41,8 +41,8 @@ const appRouter = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
-    element: <Login />, // Trang đăng nhập riêng, không nằm trong Home
+    path: "/",
+    element: <Login />,
   },
 ]);
 

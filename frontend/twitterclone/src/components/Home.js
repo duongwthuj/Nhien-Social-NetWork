@@ -7,8 +7,8 @@ import { Outlet } from 'react-router-dom';
 
 function Home() {
   const location = useLocation();
-  const isProfilePage = location.pathname === '/profile';
-  const isMesagePage = location.pathname === '/messages';
+  const isProfilePage = location.pathname === '/home/profile';
+  const isMesagePage = location.pathname === '/home/messages';
 
   if (isProfilePage) {
     return (

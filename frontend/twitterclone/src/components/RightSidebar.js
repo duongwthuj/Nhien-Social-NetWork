@@ -19,7 +19,7 @@ function RightSidebar() {
                 size="30"
                 round
               />
-              <Link to='/profile'>
+              <Link to='/home/profile'>
                 <div className='ml-2'>
                   <h1 className='font-semibold text-gray-600'>Dương Thụ</h1>
                   <p className='text-gray-500 text-sm'>@duongwthuj</p>
