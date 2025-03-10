@@ -8,14 +8,16 @@ import NotiPage from "./NotiPage";
 import ChatPage from "./ChatPage";
 import SearchPage from "./SearchPage";
 import SavePage from "./SavePage";
+import UserManagement from "./UserManagement";
+import PostManagement from "./PostManagement";
 
 const appRouter = createBrowserRouter([
   {
     path: "/home",
-    element: <Home />, 
+    element: <Home />,
     children: [
       {
-        index: true, 
+        index: true,
         element: <Feed />,
       },
       {
@@ -28,7 +30,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "notifications",
-        element: <NotiPage  />,
+        element: <NotiPage />,
       },
       {
         path: "messages",
@@ -40,10 +42,22 @@ const appRouter = createBrowserRouter([
       }
     ],
   },
+
   {
     path: "/",
     element: <Login />,
   },
+
+  {
+    path: "/admin",
+    element: <UserManagement />,
+
+  },
+
+  {
+    path: "/post",
+    element: <PostManagement />,
+  }
 ]);
 
 function Router() {
