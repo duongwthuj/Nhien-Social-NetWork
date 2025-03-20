@@ -1,8 +1,13 @@
 import express, { urlencoded } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
+import connectDB from './utlis/db.js';
+dotenv.config({}); // load các biến môi trường từ file .env vào process.env
 
 const app = express();
+const POST = process.env.PORT || 3000; // lấy port từ file .env hoặc mặc định là 5000
+
 
 // hàm get sẽ nhận vào 2 tham số là req và res, req là request từ client, res là response từ server để trả về cho client 
 app.get("/", (req,res) => {
@@ -26,8 +31,8 @@ const corsOptions = { // cấu hình cors
 }
 app.use(cors(corsOptions));
 
-const POST = 8000;
 
 app.listen(POST, () => {
     console.log(`Server is running on ${POST}`);
+    connectDB(); // kết nối database
 })
