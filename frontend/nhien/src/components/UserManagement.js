@@ -30,7 +30,17 @@ export default function UserManagement() {
             {/* Sidebar */}
             <aside className="w-64 bg-gray-200 p-4">
                 <h2 className="font-bold">QUẢN LÝ</h2>
-                
+                <div className="flex flex-col">
+                    <Link to="/admin" className="flex items-center space-x-3 px-3 py-2 rounded-full hover:bg-green-200">
+                        <CiUser size="24px" />
+                        <span>Khách hàng</span>
+                    </Link>
+
+                    <Link to="/post" className="flex items-center space-x-3 px-3 py-2 rounded-full hover:bg-green-200">
+                        <PiArticleLight size="24px" />
+                        <span>Bài đăng</span>
+                    </Link>
+                </div>
             </aside>
 
             {/* Main Content */}
@@ -58,7 +68,7 @@ export default function UserManagement() {
                             <th className="p-2">Hành động</th>
                         </tr>
                     </thead>
-                    <tbody className = "text-center">
+                    <tbody className="text-center">
                         {users.filter(u => u.name.includes(search)).map((user) => (
                             <tr key={user.id} className="border-b">
                                 <td className="p-2">{user.name}</td>
