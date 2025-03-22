@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../models/user_model";
+
 
 const isAuthenticated = async (req, res, next) => {
     try {
@@ -18,8 +18,10 @@ const isAuthenticated = async (req, res, next) => {
             });
         }
         req.id = decode.userId;
-        next(); // Chuyển hướng sang middleware tiếp theo
+        next(); // next middleware
     } catch (error) {
         console.log(error);
     }
 };
+
+export default isAuthenticated;
