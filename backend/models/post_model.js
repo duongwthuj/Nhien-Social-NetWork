@@ -22,7 +22,7 @@ const postSchema = new mongoose.Schema({
     ],
     comment:[
         {
-            text: mongoose.Types.ObjectId,
+            type: mongoose.Types.ObjectId,
             ref: 'Comment',
         }
     ]

@@ -7,13 +7,17 @@ import getDataUri from "../../utlis/datauri.js";
 export const getProfile = async (req, res) => {
     try {
         const userId = req.params.id;
-        let user = await User.findById(userId);
+        let user = await User.findById(userId).select('-password');
         if (!user) {
             return res.status(200).json({
                 msg: "User not found",
                 success: false,
             });
         }
+        return res.status(200).json({
+            success: true,
+            user,
+        });
     } catch (error) {
         console.log(error);
     }
@@ -24,14 +28,25 @@ export const getProfile = async (req, res) => {
 export const editProfile = async (req, res) => {
     try {
         const userId = req.id;
+        console.log("userId:", userId);
         const {bio, gender} = req.body;
+        console.log("req.body:", req.body);
         const profilePicture = req.file;
+        console.log("profilePicture:", profilePicture);
         let cloundRespone;
         if (profilePicture){
             const fileUri = getDataUri(profilePicture);
             cloundRespone = await cloudinary.uploader.upload(fileUri);
+            console.log("success:", cloundRespone);
+        } else{
+            console.log("No profile picture");
+            // return res.status(400).json({
+            //     msg: "Please upload a profile picture",
+            //     success: false,
+            // });
         }
         const user = await User.findById(userId);
+        console.log("user:", user);
         if (!user){
             return res.status(404).json({
                 msg: "User not found",
@@ -40,7 +55,7 @@ export const editProfile = async (req, res) => {
         }
         if (bio) user.bio = bio;
         if (gender) user.gender = gender;
-        if (profilePicture) user.profilePicture = cloundRespone.secure_url;
+        if (profilePicture) user.profilePicture = cloundRespone.secure_ur;
         await user.save();
         return res.status(200).json({
             msg: "Profile updated",
@@ -65,7 +80,7 @@ export const getSuggestFriends = async (req, res) => {
             });
         }
         return res.status(200).json({
-            succes : true,
+            success : true,
             users: suggestedUsers
         });
     } catch (error) {   
