@@ -45,7 +45,7 @@ export const editProfile = async (req, res) => {
             //     success: false,
             // });
         }
-        const user = await User.findById(userId);
+        const user = await User.findById(userId).select("-password");
         console.log("user:", user);
         if (!user){
             return res.status(404).json({
