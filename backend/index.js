@@ -4,6 +4,9 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import connectDB from './utlis/db.js';
 import userRouter from './routes/user_route.js';
+import postRouter from './routes/post_route.js';
+import messageRouter from './routes/messenge_route.js';
+
 dotenv.config({}); // load các biến môi trường từ file .env vào process.env
 
 const app = express();
@@ -32,6 +35,8 @@ const corsOptions = { // cấu hình cors
 }
 app.use(cors(corsOptions));
 app.use("/api/v1/user", userRouter); // gọi đường dẫn /api/v1/user sẽ vào file userRouter
+app.use("/api/v1/post", postRouter); // gọi đường dẫn /api/v1/post sẽ vào file postRouter
+app.use("/api/v1/message", messageRouter); // gọi đường dẫn /api/v1/message sẽ vào file messageRouter
 
 
 
