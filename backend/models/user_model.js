@@ -26,7 +26,11 @@ const userSchema = new mongoose.Schema({
     gender: {
         type: String,
         enum: ['male', 'female', 'other'],
-
+    },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
     },
     followers: [
         {
@@ -54,4 +58,4 @@ const userSchema = new mongoose.Schema({
     ]
 
 }, { timestamps: true });
-export const User = mongoose.model('User', userSchema); 
+export const User = mongoose.model('User', userSchema);

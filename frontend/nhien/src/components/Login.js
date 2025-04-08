@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import để điều hướng
+import { useAuth } from "../context/AuthContext"; // Import AuthContext
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -9,6 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(""); // Trạng thái lỗi
   const navigate = useNavigate(); // Hook để điều hướng trang
+  const { login } = useAuth(); // Sử dụng hook useAuth
 
   const loginSignupHandler = () => {
     setIsLogin(!isLogin);
@@ -20,9 +22,13 @@ const Login = () => {
 
     if (isLogin) {
       if (username === "admin" && password === "123") {
-        navigate("/admin"); // Chuyển đến trang chủ nếu đúng tài khoản
+        // Lưu thông tin người dùng vào context
+        login({ username, role: 'admin' });
+        navigate("/admin"); // Chuyển đến trang admin nếu đúng tài khoản admin
       } else if (username === "user" && password === "123") {
-        navigate("/home"); // Chuyển đến trang chủ nếu đúng tài khoản
+        // Lưu thông tin người dùng vào context
+        login({ username, role: 'user' });
+        navigate("/home"); // Chuyển đến trang chủ nếu đúng tài khoản user
       }
       else {
         setError("Tài khoản hoặc mật khẩu không đúng"); // Hiển thị thông báo lỗi
