@@ -24,6 +24,7 @@ app.get("/", (req,res) => {
 })
 
 
+
 // middleware là một hàm có thể truy cập vào các request, response object và next middleware function trong chuỗi middleware của ứng dụng.
 app.use(express.json()); // middleware để nhận dữ liệu từ client
 app.use(cookieParser()); // middleware để xử lý cookie
@@ -41,6 +42,8 @@ app.use("/api/v1/message", messageRouter); // gọi đường dẫn /api/v1/mess
 
 
 app.listen(PORT, () => {
-    console.log(`Server is running on ${PORT}`);
-    connectDB(); // kết nối database
+    console.log(`Server is running on port ${PORT}`);
+    connectDB(); // kết nối database 
 })
+
+

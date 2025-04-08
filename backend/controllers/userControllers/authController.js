@@ -78,6 +78,16 @@ export const login = async (req, res) => {
             process.env.SECRET_KEY,
             { expiresIn: "1d" }
         );
+
+        const populatedPosts = await Promise.all(
+            user.posts.map(async (postId) => {
+                const post = await Post.findById(postId);
+                if (post.author.equals(user._id)) {
+                    return post;
+                }
+                return null;
+            })
+        );
         return res.cookie("token", token, { httpOnly: true, sameSite: 'strict', maxAge: 1 * 24 * 60 * 60 * 1000 }).json({
             msg: `Welcome back ${user.username}`,
             success: true,
