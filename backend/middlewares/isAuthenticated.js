@@ -1,34 +1,24 @@
 import jwt from "jsonwebtoken";
-
-
-const isAuthenticated = async (req, res, next) => {
+const isAuthenticated = async (req,res,next)=>{
     try {
         const token = req.cookies.token;
-        if (!token) {
+        if(!token){
             return res.status(401).json({
-                msg: "User not authenticated",
-                success: false,
+                message:'User not authenticated',
+                success:false
             });
         }
-        const decode = await jwt.verify(token, process.env.SECRET_KEY);
-        console.log("decode:", decode);
-        if (!decode) {
+        const decode = await jwt.verify(token, "duongwthuj");
+        if(!decode){
             return res.status(401).json({
-                msg: "Invalid",
-                success: false,
+                message:'Invalid',
+                success:false
             });
         }
-        req.id = decode.userId || decode.userID;
-        next(); // next middleware
+        req.id = decode.userId;
+        next();
     } catch (error) {
-        console.log("Lỗi trong isAuthenticated:", error);
-        return res.status(401).json({
-            msg: "Lỗi xác thực token",
-            success: false,
-            error: error.message,
-        });
+        console.log(error);
     }
-
-};
-
+}
 export default isAuthenticated;

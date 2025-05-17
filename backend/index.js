@@ -1,51 +1,37 @@
-import express, { application, urlencoded } from 'express';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import dotenv from 'dotenv';
-import connectDB from './utlis/db.js';
-import userRouter from './routes/user_route.js';
-import postRouter from './routes/post_route.js';
-import messageRouter from './routes/messenge_route.js';
-import adminRouter from './routes/admin_route.js';
+// Import các thư viện cần thiết
+import express, { urlencoded } from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import connectDB from "./utils/db.js";
+import userRoute from "./routes/user.route.js";
+import postRoute from "./routes/post.route.js";
+import messageRoute from "./routes/message.route.js";
+import { app, server } from "./socket/socket.js";
+import path from "path";
 
-dotenv.config({}); // load các biến môi trường từ file .env vào process.env
+// Cấu hình port cho server
+const PORT = 3000;
+const __dirname = path.resolve();
 
-const app = express();
-const PORT = process.env.PORT || 3000; // lấy port từ file .env hoặc mặc định là 5000
+// Cấu hình các middleware
+app.use(express.json());
+app.use(cookieParser());
+app.use(urlencoded({ extended: true }));
 
-
-// hàm get sẽ nhận vào 2 tham số là req và res, req là request từ client, res là response từ server để trả về cho client 
-app.get("/", (req,res) => {
-    return res.status(200).json(
-        {
-            message: "test Backend",
-            success: true
-        }
-    )
-})
-
-
-
-// middleware là một hàm có thể truy cập vào các request, response object và next middleware function trong chuỗi middleware của ứng dụng.
-app.use(express.json()); // middleware để nhận dữ liệu từ client
-app.use(cookieParser()); // middleware để xử lý cookie
-app.use(urlencoded({ extended: true })); // middleware để nhận dữ liệu từ form 
-const corsOptions = { // cấu hình cors 
-    origin: ["http://localhost:5173"], // chỉ cho phép các domain này gửi request
-    credentials: true, // cho phép gửi cookie
-    optionsSuccessStatus: 200 // trả về status 200 cho các request options 
+// Cấu hình CORS để cho phép frontend truy cập
+const corsOptions = {
+    origin: "http://localhost:5173", // URL của frontend
+    credentials: true // Cho phép gửi cookies
 }
 app.use(cors(corsOptions));
-app.use("/api/v1/user", userRouter); // gọi đường dẫn /api/v1/user sẽ vào file userRouter
-app.use("/api/v1/post", postRouter); // gọi đường dẫn /api/v1/post sẽ vào file postRouter
-app.use("/api/v1/message", messageRouter); // gọi đường dẫn /api/v1/message sẽ vào file messageRouter
-app.use("/api/v1/admin", adminRouter); // gọi đường dẫn /api/v1/admin sẽ vào file adminRouter
 
+// Định nghĩa các routes cho API
+app.use("/api/v1/user", userRoute);    // Route xử lý người dùng
+app.use("/api/v1/post", postRoute);    // Route xử lý bài đăng
+app.use("/api/v1/message", messageRoute); // Route xử lý tin nhắn
 
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-    connectDB(); // kết nối database 
-})
-
-
+// Khởi động server
+server.listen(PORT, () => {
+    connectDB(); // Kết nối với database
+    console.log(`Server listen at port ${PORT}`);
+});
